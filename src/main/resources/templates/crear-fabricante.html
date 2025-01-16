@@ -15,6 +15,7 @@
 <body>
 
 <div id="contenedora" style="float:none; margin: 0 auto;width: 900px;" >
+	<!--@ para usar urls-->
 	<form th:action="@{/fabricantes/crear/}" th:object="${fabricante}" method="post">
 		<div class="clearfix">
 			<div style="float: left; width: 50%">
@@ -28,7 +29,8 @@
 				
 			</div>
 		</div>
-		
+
+		<!--ES el salto de linea para una fila-->
 		<div class="clearfix">
 			<hr/>
 		</div>
