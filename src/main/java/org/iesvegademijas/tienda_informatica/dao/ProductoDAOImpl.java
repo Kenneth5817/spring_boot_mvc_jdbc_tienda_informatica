@@ -33,7 +33,7 @@ public class ProductoDAOImpl  implements ProductoDAO{
 
         List<Producto> listProds = jdbcTemplate.query(
                 "SELECT * FROM producto",
-                (rs, rowNum) -> new Producto(rs.getInt("codigo"),rs.getString("nombre"))
+                (rs, rowNum) -> new Producto(rs.getInt("codigo"),rs.getString("nombre"),rs.getDouble("precio"), rs.getInt("id_fabricante"))
         );
 
         return listProds;
@@ -48,7 +48,7 @@ public class ProductoDAOImpl  implements ProductoDAO{
 
         Producto producto =  jdbcTemplate
                 .queryForObject("SELECT * FROM producto WHERE codigo = ?"
-                        , (rs, rowNum) -> new Producto(rs.getInt("codigo"),rs.getString("nombre"))
+                        , (rs, rowNum) -> new Producto(rs.getInt("codigo"),rs.getString("nombre"),rs.getDouble("precio"), rs.getInt("id_fabricante"))
                         , id
                 );
 
@@ -62,7 +62,7 @@ public class ProductoDAOImpl  implements ProductoDAO{
     @Override
     public void update(Producto producto) {
 
-        int rows = jdbcTemplate.update("UPDATE fabricante SET nombre = ?  WHERE codigo = ?", producto.getNombre(), producto.getCodigo());
+        int rows = jdbcTemplate.update("UPDATE fabricante SET nombre = ?  WHERE codigo = ?", producto.getNombre(), producto.getCodigo(), producto.getPrecio(),producto.getId_fabricante());
         if (rows == 0) System.out.println("Update de producto con 0 registros actualizados.");
 
     }
